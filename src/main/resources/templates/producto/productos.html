@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Products</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}" />
+</head>
+<body>
+<div th:replace="includes/header :: header"></div>
+<div >
+    <section th:each="category : ${categories}" class="products container" th:id="${category.nombreCategoria}">
+        <h2 th:text="${category.nombreCategoria}"></h2>
+        <div class="box-container">
+            <div class="box-container" th:id="'lista-' + ${category.idCategoria}">
+                <div th:each="product : ${products}" th:if="${product.idCategoria == category.idCategoria}" class="box">
+                    <img th:src="@{/assets/images/productos/{productName}.{extension}(productName=${product.nombreProducto}, extension='png')}" th:alt="${product.nombreProducto}" th:title="${product.descripcion}" />
+                    <div class="product-txt">
+                        <h3 th:text="${product.nombreProducto}"></h3>
+                        <p class="precio" th:text="${product.precioVenta}"></p>
+                        <div class="product-btns">
+                            <a href="#" class="agregar-carrito btn-3" th:data-id="${product.idProducto}">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="testimonial container">
+        <span>Cuentenos su experiencia con nosotros: </span>
+        <h2>Qué opinan nuestros clientes</h2>
+        <div class="testimonial-content">
+            <div class="testimonial-1">
+                <p>Cada uno de los servicios que ofrece el establecimiento cumple con mis expectativas con una muy buena
+                    atención GRACIAS!</p>
+                <img src="assets/images/icons/starts.png">
+                <h4>Calificación </h4>
+            </div>
+            <div class="testimonial-1">
+                <p>Sus servicios de envíos son muy rápidos y eficaces dándome un maravilloso servicio </p>
+                <img src="assets/images/icons/starts.png">
+                <h4>Calificación </h4>
+            </div>
+            <div class="testimonial-1">
+                <p>Tiene una plataforma muy amigable con el usuario fácil de usar y otorga la información necesaria para
+                    hacer mis compras muy ágil y fácil </p>
+                <img src="assets/images/icons/starts.png">
+                <h4>Calificación </h4>
+            </div>
+        </div>
+    </section>
+</div>
+<div th:replace="includes/footer :: footer"></div>
+</body>
+</html>

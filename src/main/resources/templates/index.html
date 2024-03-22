@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>La Fortaleza</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}" />
+<!-- jQuery CDN -->
+<script th:src="@{https://code.jquery.com/jquery-3.6.4.min.js}"></script>
+<!-- Slick Carousel CDN -->
+<script th:src="@{https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js}"></script>
+    <script th:src="@{/js/slider.js}"></script>
+
+<!-- GSAP CDN -->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/gsap.min.js}"
+        integrity="sha512-7Au1ULjlT8PP1Ygs6mDZh9NuQD0A5prSrAUiPHMXpU6g3UMd8qesVnhug5X4RoDr35x5upNpx0A6Sisz1LSTXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+<!--include header -->
+<div th:replace="includes/header :: header"></div>
+
+<div class="main-container">
+    <div class="container-cover">
+        <div class="container-child-cover">
+            <div class="container-imagen">
+                <img th:src="@{/images/almacen.jpg}" alt="cover">
+            </div>
+            <div class="capa-shadow"></div>
+            <div class="capa2"></div>
+        </div>
+    </div>
+    <div class="welcome">
+        <div class="welcome__title">
+            <h1>Bienvenido a </h1>
+            <h2>Supermercado La fortaleza</h2>
+        </div>
+        <div class="welcome__subtitle">
+            <h2>¡Encuentra todo para tu despensa!</h2>
+        </div>
+    </div>
+
+    <div class="category-carousel">
+        <div th:each="categoria : ${categories}" class="category__card">
+            <div class="category_img">
+                <img th:src="@{/assets/images/categorias/{categoria.nombreCategoria}.png}" th:alt="${categoria.nombreCategoria}" />
+            </div>
+            <div class="category__info">
+                <h3 th:text="${categoria.nombreCategoria}"></h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-info">
+        <div class="info">
+            <h3>¿Qué hacemos en supermercados <i> La fortaleza</i>?</h3>
+            <p>En supermercados la fortaleza, buscamos siempre cubrir una necesidad de forma inmediata y segura,
+                proporcionando una experiencia agradable al usuario durante su compra, así mismo con procesos
+                eficientes en los pedidos y en las entregas de los productos y artículos.</p>
+        </div>
+    </div>
+</div>
+<div th:replace="includes/footer :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+
+<header class="header">
+    <a th:href="@{/}">
+        <div class="header__logo">
+            <img src="assets/images/icons/logo.png" alt="">
+            <h4>La Fortaleza</h4>
+        </div>
+    </a>
+    <div class="header__search" id="search-bar">
+        <form th:action="@{/productos}" method="get">
+            <input type="hidden" name="controller" value="productos">
+            <input type="hidden" name="action" value="index">
+            <input type="text" name="search" placeholder="Buscar productos...">
+            <button type="submit"><i class="fa-solid fa-search"></i></button>
+        </form>
+    </div>
+    <div style="display: flex; align-items: center;">
+        <div style="padding: 0 30px;">
+            <ul>
+                <div class="contador">
+                    <span id="numero-productos">0</span>
+                </div>
+                <li class="submenu" id="carrito-compras">
+                    <i class="fa-solid fa-cart-shopping" style="color: #038de9; font-size: 24px"></i>
+                    <div id="carrito">
+                        <div class="lista-carrito">
+                        </div>
+                        <div class="carrito-footer">
+                            <div>
+                                <a href="#" id="vaciar-carrito" class="btn-3">Vaciar</a>
+                                <form th:action="@{/carrito/checkout}" method="post">
+                                    <input type="hidden" name="productos" id="productos">
+                                    <input type="hidden" name="controller" value="carrito">
+                                    <input type="hidden" name="action" value="checkout">
+                                    <button id="checkout" type="submit" class="btn-3" disabled>Ir a Pagar</button>
+                                </form>
+                            </div>
+                            <p id="total">Total: $0.00</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <nav class="header__nav">
+            <ul class="header__list">
+                <li><a th:href="@{/}"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                <li><a th:href="@{/productos/index}"><i class="fa-solid fa-table-cells-large"></i> Productos</a></li>
+                <li><a th:href="@{/contactenos/index}"><i class="fa-solid fa-envelope"></i> Contáctenos</a></li>
+                <!-- Ajuste para Thymeleaf -->
+                <li th:if="${session.user} != null" class="submenu">
+                    <a th:href="@{/infoUsuario/index}"><i class="user-icon fas fa-user"></i> ${session.user.nombre_usuario}</a>
+                    <div id="user-menu">
+                        <ul class="children">
+                            <li><a th:href="@{/infoUsuario/index}"><i class="fa-regular fa-address-card" style='color:
+                                    #038de9;'></i> Mi Cuenta</a></li>
+                            <hr>
+                            <li><a th:href="@{/carrito/compras}"><i class="fa-brands fa-shopify" style='color:
+                                    #038de9;'></i> Mis Compras</a></li>
+                            <hr>
+                            <li><a th:href="@{/login/logout}"><i class="fa-solid fa-arrow-right-from-bracket" style='color:
+                                    #038de9;'></i> Cerrar Sesión</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li th:unless="${session.user} != null"><a th:href="@{/login/index}"><i class="fa-solid fa-arrow-right-to-bracket"></i> Ingresar</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+

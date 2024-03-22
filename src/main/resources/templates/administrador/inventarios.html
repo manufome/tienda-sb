@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Base de datos</title>
+
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css}">
+    <link th:href="@{https://fonts.googleapis.com/css2?family=Material+Icons}" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css}" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link rel="stylesheet" th:href="@{//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/styles.css}">
+    <link th:href="@{/sb-admin-2.min.css}" rel="stylesheet">
+</head>
+<body>
+<!--<div th:replace="includes/header :: header"></div>-->
+
+<div id="content">
+    <section>
+        <div class="container mt-5" style="margin-bottom: 50px;">
+            <div class="row">
+                <div class="col-sm-12 mb-3">
+                    <center><h1>Productos</h1></center>
+<!--                    <a th:href="@{/inventario/agregar}">-->
+                        <input class="btn btn-primary" type="button" value="Agregar producto">
+                    </a>
+                </div>
+                <!-- Colores de alerta -->
+                <div class="col-sm-4">
+                    <div class="alert alert-danger" role="alert">
+                        Stock muy bajo
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="alert alert-warning" role="alert">
+                        Stock bajo
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="alert alert-info" role="alert">
+                        Stock medio
+                    </div>
+                </div>
+                <!-- Fin colores de alerta -->
+                <div class="col-sm-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover" id="myTable">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Categoria</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Almacen</th>
+                                <th>Alerta</th>
+                                <th>Imagen</th>
+                                <th>Acciones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- Iteración sobre los productos -->
+                            <tr th:each="row : ${products}">
+                                <td th:text="${row.idProducto}"></td>
+                                <td th:text="${row.nombreProducto}"></td>
+                                <td th:text="${row.nombreCategoria}"></td>
+                                <td th:text="'$' + ${row.precioVenta}"></td>
+                                <td th:text="${row.stock}"></td>
+                                <td th:text="${row.nombreAlmacen}"></td>
+                                <td th:text="${row.alerta}"></td>
+<!--                                <td><img th:src="'assets/images/productos/' + ${row.nombre_producto} + '.png'" width="100"></td>-->
+<!--                                <td>-->
+<!--                                    <a th:href="@{'/inventario/editar/' + ${row.id_producto}}">Editar</a>-->
+<!--                                    <span>|</span>-->
+<!--                                    <a th:href="@{'/inventario/eliminar/' + ${row.id_producto}}">Eliminar</a>-->
+<!--                                </td>-->
+                            </tr>
+                            <!-- Fin iteración sobre los productos -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div th:replace="includes/footer :: footer"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+</script>
+</body>
+</html>
