@@ -1,4 +1,4 @@
-package com.laFortaleza.tienda.models;
+package com.laFortaleza.tienda.models.inventories;
 
 import java.io.Serializable;
 import jakarta.persistence.Column;
