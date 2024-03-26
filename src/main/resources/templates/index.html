@@ -17,7 +17,7 @@
 </head>
 <body>
 <!--include header -->
-<div th:replace="includes/header :: header"></div>
+<div th:insert="includes/header :: header"></div>
 
 <div class="main-container">
     <div class="container-cover">
@@ -30,8 +30,7 @@
         </div>
     </div>
     <div class="welcome">
-        <div class="welcome__title">
-            <h1>Bienvenido a </h1>
+        <div class="welcome__title">            <h1>Bienvenido a </h1>
             <h2>Supermercado La fortaleza</h2>
         </div>
         <div class="welcome__subtitle">
@@ -42,7 +41,7 @@
     <div class="category-carousel">
         <div th:each="categoria : ${categories}" class="category__card">
             <div class="category_img">
-                <img th:src="@{/assets/images/categorias/{categoria.nombreCategoria}.png}" th:alt="${categoria.nombreCategoria}" />
+                <img th:src="'data:image/png;base64,'+${categoria.getImgBase64()}" th:alt="${categoria.nombreCategoria}" />
             </div>
             <div class="category__info">
                 <h3 th:text="${categoria.nombreCategoria}"></h3>
@@ -59,6 +58,6 @@
         </div>
     </div>
 </div>
-<div th:replace="includes/footer :: footer"></div>
+<div th:insert="includes/footer :: footer"></div>
 </body>
 </html>

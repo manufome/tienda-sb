@@ -1,6 +1,7 @@
 package com.laFortaleza.tienda.models;
 
 import jakarta.persistence.*;
+import org.apache.tomcat.util.codec.binary.Base64;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -86,6 +87,10 @@ public class ProductsEntity {
 
     public void setImgProducto(byte[] imgProducto) {
         this.imgProducto = imgProducto;
+    }
+
+    public String getImgBase64() {
+        return Base64.encodeBase64String(this.imgProducto);
     }
 
     @Override

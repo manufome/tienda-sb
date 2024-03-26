@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 <head>
     <title>View Products</title>
     <link rel="stylesheet" type="text/css" th:href="@{/styles.css}" />
@@ -7,12 +7,25 @@
 <body>
 <div th:replace="includes/header :: header"></div>
 <div >
+<!--    <section class="oferts container">-->
+<!--        <div class="slider">-->
+<!--            <div th:each="categoria, iterStat : ${categories}" class="slide ofert-1 b__${iterStat.index + 1}__">-->
+<!--                <a th:href="'#' + ${categoria.nombreCategoria}">-->
+<!--                <div class="ofert-txt">-->
+<!--                    <h3 th:text="${categoria.nombreCategoria}"></h3>-->
+<!--                </div>-->
+<!--                </a>-->
+<!--                <img th:src="'data:image/png;base64,'+${categoria.getImgBase64()}" th:alt="${categoria.nombreCategoria}" />-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+
     <section th:each="category : ${categories}" class="products container" th:id="${category.nombreCategoria}">
         <h2 th:text="${category.nombreCategoria}"></h2>
         <div class="box-container">
             <div class="box-container" th:id="'lista-' + ${category.idCategoria}">
                 <div th:each="product : ${products}" th:if="${product.idCategoria == category.idCategoria}" class="box">
-                    <img th:src="@{/assets/images/productos/{productName}.{extension}(productName=${product.nombreProducto}, extension='png')}" th:alt="${product.nombreProducto}" th:title="${product.descripcion}" />
+                    <img th:src="'data:image/png;base64,'+${product.getImgBase64()}" th:alt="${product.nombreProducto}" th:title="${product.descripcion}" />
                     <div class="product-txt">
                         <h3 th:text="${product.nombreProducto}"></h3>
                         <p class="precio" th:text="${product.precioVenta}"></p>
@@ -31,22 +44,78 @@
             <div class="testimonial-1">
                 <p>Cada uno de los servicios que ofrece el establecimiento cumple con mis expectativas con una muy buena
                     atención GRACIAS!</p>
-                <img src="assets/images/icons/starts.png">
+                <img th:src="@{/images/icons/stars.png}" alt="Estrella" />
                 <h4>Calificación </h4>
             </div>
             <div class="testimonial-1">
                 <p>Sus servicios de envíos son muy rápidos y eficaces dándome un maravilloso servicio </p>
-                <img src="assets/images/icons/starts.png">
+                <img th:src="@{/images/icons/stars.png}" alt="Estrella" />
                 <h4>Calificación </h4>
             </div>
             <div class="testimonial-1">
                 <p>Tiene una plataforma muy amigable con el usuario fácil de usar y otorga la información necesaria para
                     hacer mis compras muy ágil y fácil </p>
-                <img src="assets/images/icons/starts.png">
+                <img th:src="@{/images/icons/stars.png}" alt="Estrella" />
                 <h4>Calificación </h4>
             </div>
         </div>
     </section>
+    <script th:inline="javascript">
+        const categorias = [
+            /*[[${categories}]]*/
+        ];
+        console.log(categorias);
+        const categoriaIzquierdaElement = document.querySelector('.ofert-1.b1 h3');
+        const categoriaCentroElement = document.querySelector('.ofert-1.b2 h3');
+        const categoriaDerechaElement = document.querySelector('.ofert-1.b3 h3');
+
+        const categoriaIzquierdaContainer = document.querySelector('.ofert-1.b1');
+        const categoriaCentroContainer = document.querySelector('.ofert-1.b2');
+        const categoriaDerechaContainer = document.querySelector('.ofert-1.b3');
+
+        const categoriaIzquierdaImg = document.querySelector('.ofert-1.b1 img');
+        const categoriaCentroImg = document.querySelector('.ofert-1.b2 img');
+        const categoriaDerechaImg = document.querySelector('.ofert-1.b3 img');
+
+        const categoriaIzquierdaButton = document.querySelector('.ofert-1.b1 a');
+        const categoriaCentroButton = document.querySelector('.ofert-1.b2 a');
+        const categoriaDerechaButton = document.querySelector('.ofert-1.b3 a');
+
+        let posicionActual = 0;
+
+        function changeCategories(offset) {
+            // Actualiza la posición actual.
+            posicionActual += offset;
+
+            if (posicionActual < 0) {
+                posicionActual = categorias.length - 3;
+            } else if (posicionActual > categorias.length - 3) {
+                posicionActual = 0;
+            }
+
+            categoriaIzquierdaElement.innerText = categorias[posicionActual].nombreCategoria;
+            categoriaCentroElement.innerText = categorias[posicionActual + 1].nombreCategoria;
+            categoriaDerechaElement.innerText = categorias[posicionActual + 2].nombreCategoria;
+
+
+            categoriaIzquierdaImg.src = 'data:image/png;base64,' + categorias[posicionActual].getImgBase64();
+            categoriaCentroImg.src = 'data:image/png;base64,' + categorias[posicionActual + 1].getImgBase64();
+            categoriaDerechaImg.src = 'data:image/png;base64,' + categorias[posicionActual + 2].getImgBase64();
+
+
+            categoriaIzquierdaButton.href = '#' + categorias[posicionActual].nombreCategoria;
+            categoriaCentroButton.href = '#' + categorias[posicionActual + 1].nombreCategoria;
+            categoriaDerechaButton.href = '#' + categorias[posicionActual + 2].nombreCategoria;
+
+            categoriaIzquierdaContainer.classList.remove('b1', 'b2', 'b3');
+            categoriaCentroContainer.classList.remove('b1', 'b2', 'b3');
+            categoriaDerechaContainer.classList.remove('b1', 'b2', 'b3');
+
+            categoriaIzquierdaContainer.classList.add('b' + ((posicionActual + 1) % 3 + 1));
+            categoriaCentroContainer.classList.add('b' + ((posicionActual + 2) % 3 + 1));
+            categoriaDerechaContainer.classList.add('b' + ((posicionActual + 3) % 3 + 1));
+        }
+    </script>
 </div>
 <div th:replace="includes/footer :: footer"></div>
 </body>

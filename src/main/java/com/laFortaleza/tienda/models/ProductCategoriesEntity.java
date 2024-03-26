@@ -1,6 +1,7 @@
 package com.laFortaleza.tienda.models;
 
 import jakarta.persistence.*;
+import org.apache.tomcat.util.codec.binary.Base64;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -43,6 +44,9 @@ public class ProductCategoriesEntity {
         this.imgCategoria = imgCategoria;
     }
 
+    public String getImgBase64() {
+        return Base64.encodeBase64String(this.imgCategoria);
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

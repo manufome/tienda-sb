@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import org.apache.tomcat.util.codec.binary.Base64;
 
 @Service
 public class ProductsService {
@@ -20,8 +21,9 @@ public class ProductsService {
         return productsRepository.findById(id);
     }
 
-    public void saveOrUpdate(ProductsEntity product){
-        productsRepository.save(product);
+    public ProductsEntity saveOrUpdate(ProductsEntity product){
+        System.out.println("Product: " + product.getIdProducto());
+        return productsRepository.save(product);
     }
 
     public void delete(int id){

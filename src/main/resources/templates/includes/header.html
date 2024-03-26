@@ -2,7 +2,7 @@
 <header class="header">
     <a th:href="@{/}">
         <div class="header__logo">
-            <img src="assets/images/icons/logo.png" alt="">
+            <img th:src="@{/images/icons/logo.png}" alt="La Fortaleza">
             <h4>La Fortaleza</h4>
         </div>
     </a>
@@ -44,8 +44,8 @@
         <nav class="header__nav">
             <ul class="header__list">
                 <li><a th:href="@{/}"><i class="fa-solid fa-house"></i> Inicio</a></li>
-                <li><a th:href="@{/productos/index}"><i class="fa-solid fa-table-cells-large"></i> Productos</a></li>
-                <li><a th:href="@{/contactenos/index}"><i class="fa-solid fa-envelope"></i> Contáctenos</a></li>
+                <li><a th:href="@{/productos}"><i class="fa-solid fa-table-cells-large"></i> Productos</a></li>
+                <li><a th:href="@{/contactenos}"><i class="fa-solid fa-envelope"></i> Contáctenos</a></li>
                 <!-- Ajuste para Thymeleaf -->
                 <li th:if="${session.user} != null" class="submenu">
                     <a th:href="@{/infoUsuario/index}"><i class="user-icon fas fa-user"></i> ${session.user.nombre_usuario}</a>

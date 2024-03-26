@@ -1124,3 +1124,21 @@ aside {
 .contador {
     position: relative;
 }
+
+
+.slider{
+    aspect-ratio: 10 / 16;
+    width: 800px;
+    position: relative;
+    display: flex;
+    overflow: scroll;
+    scroll-snap-type: x mandatory;
+}
+
+.slider img{
+    width: 100%;
+    left: 0;
+    position: sticky;
+    object-fit: cover;
+    scroll-snap-align: center;
+}
