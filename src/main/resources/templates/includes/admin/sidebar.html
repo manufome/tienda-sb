@@ -1,0 +1,57 @@
+
+<aside class="offcanvas offcanvas-start"
+       data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel"
+       th:fragment="sidebar" style="max-width: 200px;"
+>
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="staticBackdropLabel">LA FORTALEZA</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div>
+
+                <hr class="sidebar-divider my-0">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">
+                            <i class="material-icons-outlined"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                </ul>
+                <hr class="sidebar-divider">
+                <div class="sidebar-heading">ADMINISTRADOR</div>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#">
+                            <span class="material-icons">pattern</span>
+                            <span>Inventario</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#">
+                            <span class="material-icons">category</span>
+                            <span>Categorías</span>
+                        </a>
+                    </li>
+                </ul>
+                <hr class="sidebar-divider">
+                <div class="sidebar-heading">PERFIL</div>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#">
+                            <span class="material-icons">people</span>
+                            <span>Información usuario</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">
+                            <span class="material-icons">logout</span>
+                            <span>Salir</span>
+                        </a>
+                    </li>
+                </ul>
+                <hr class="sidebar-divider d-none d-md-block">
+        </div>
+    </div>
+</aside>

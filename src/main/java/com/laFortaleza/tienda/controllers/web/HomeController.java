@@ -16,4 +16,9 @@ public class HomeController {
         modelAndView.addObject("categories", productCategoriesService.getCategories());
         return modelAndView;
     }
+    @GetMapping("/contactenos")
+    public ModelAndView getContactenos() {
+        ModelAndView modelAndView = new ModelAndView("contactenos");
+        return modelAndView;
+    }
 }

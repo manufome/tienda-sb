@@ -1124,21 +1124,31 @@ aside {
 .contador {
     position: relative;
 }
-
-
-.slider{
-    aspect-ratio: 10 / 16;
-    width: 800px;
-    position: relative;
+.embla {
+    overflow: hidden;
+}
+.embla__container {
     display: flex;
-    overflow: scroll;
-    scroll-snap-type: x mandatory;
+}
+.embla__slide {
+    flex: 0 0 100%;
+    min-width: 0;
 }
 
-.slider img{
-    width: 100%;
-    left: 0;
-    position: sticky;
-    object-fit: cover;
-    scroll-snap-align: center;
-}
+
+/*.slider{*/
+/*    aspect-ratio: 10 / 16;*/
+/*    width: 800px;*/
+/*    position: relative;*/
+/*    display: flex;*/
+/*    overflow: scroll;*/
+/*    scroll-snap-type: x mandatory;*/
+/*}*/
+
+/*.slider img{*/
+/*    width: 100%;*/
+/*    left: 0;*/
+/*    position: sticky;*/
+/*    object-fit: cover;*/
+/*    scroll-snap-align: center;*/
+/*}*/

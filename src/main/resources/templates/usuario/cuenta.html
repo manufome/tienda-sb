@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<!-- Aquí iría tu header -->
+<div class="main-container-userinfo">
+    <aside>
+        <section class='user-sidebar'>
+            <div class="card">
+                <div class="card__header">Imágen de Perfil</div>
+                <div class="card__body">
+                    <!-- Profile avatar-->
+                    <img class="img-account-profile" src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="">
+                    <!-- Profile avatar change button-->
+                    <button class="btn-3" type="button" onclick='toggleModal("modal-avatar")'>Cambiar Avatar</button>
+                    <!-- create hidden modal for choose the avatar -->
+                    <div id="modal-avatar" class="modal">
+                        <div class="modal-content">
+                            <span class="close" onclick='toggleModal("modal-avatar")'>&times;</span>
+                            <h2>Elija un avatar</h2>
+                            <div class="avatar-container">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar3.png" alt="">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar4.png" alt="">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar5.png" alt="">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar6.png" alt="">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar8.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__header">Nombre de usuario</div>
+                <div class="card__body">
+                    <h1 th:text="${user.username}"></h1>
+                </div>
+            </div>
+        </section>
+    </aside>
+    <section class="account-details">
+        <h2>Detalles de la Cuenta  <i class="fa-solid fa-edit" id="edit-details"></i></h2>
+
+        <!-- button editar -->
+        <div class="account-details__container">
+            <form action="/updateInfo" method="post">
+                <div class="account-details__item">
+                    <label for="nombre">Nombre Completo:</label>
+                    <input type="text" name="nombre" id="nombre" th:value="${user.name}" required disabled>
+                </div>
+                <div class="account-details__item">
+                    <label for="correo">Correo:</label>
+                    <input type="email" name="correo" id="correo" th:value="${user.email}" required disabled>
+                </div>
+                <div class="account-details__item">
+                    <label for="direccion">Dirección:</label>
+                    <input type="text" name="direccion" id="direccion" th:value="${user.address}" required disabled>
+                </div>
+                <input type="hidden" name="action" value="update">
+                <div class="account-details__item" id="save-changes">
+                    <button type="submit" class="btn-3">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+        <br>
+        <br>
+        <h2>Cambiar Contraseña</h2>
+        <div class="account-details__container">
+            <form action="/updatePassword" method="post">
+                <div class="account-details__item">
+                    <label for="old-password">Contraseña Actual:</label>
+                    <input type="password" name="old-password" id="old-password" required>
+                </div>
+                <div class="account-details__item">
+                    <label for="new-password">Nueva Contraseña:</label>
+                    <input type="password" name="new-password" id="new-password" required>
+                </div>
+                <div class="account-details__item">
+                    <label for="confirm-password">Confirmar Contraseña:</label>
+                    <input type="password" name="confirm-password" id="confirm-password" required>
+                </div>
+                <input type="hidden" name="action" value="updatePassword">
+                <div class="account-details__item">
+                    <button type="submit" class="btn-3">Cambiar Contraseña</button>
+                </div>
+            </form>
+            <!-- Aquí irían tus bloques de error y éxito si los tuvieras -->
+        </div>
+    </section>
+</div>
+
+<!-- Aquí iría tu script de JavaScript -->
+</body>
+</html>
